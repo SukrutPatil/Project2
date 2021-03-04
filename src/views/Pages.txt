@@ -1,0 +1,32 @@
+Admin
+=========
+1) Login page
+
+2) Product saving page
+
+3) view Product page
+
+4) General details of users, amount etc
+
+
+General Pages
+=============
+1)Winners page
+
+2)Login
+
+3)signup - OTP to email and Phone
+
+4)After login page- enter remaining details of user info about address,proof, etc
+
+5) Password recover
+
+User pages after Login
+======================
+1)My Profile
+2)My Account
+3)Add Coins
+4)Products to buy
+5)Refer & Earn
+6)Offer on product to win
+7)User win products
