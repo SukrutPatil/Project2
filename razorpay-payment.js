@@ -1,7 +1,8 @@
-import * as Razorpay from "razorpay";
-import * as crs from "crypto-random-string";
-import * as dotenv from 'dotenv';
-dotenv.config();
+
+const Razorpay = require("razorpay");
+const crs = require("crypto-random-string");
+require("dotenv").config();
+
 
  
 let rzp = new Razorpay({
@@ -11,30 +12,40 @@ let rzp = new Razorpay({
 /***
  * @param {number} coins
  */
-const generateOrderIdForCoins = (coins) => {
+const generateOrderIdForCoins = async (coins) => {
   const options = {
     amount: getCurrentPriceForCoins(coins),
     currency: process.env.currency,
     receipt: generateRecieptId(),
   };
   let theOrder;
-  rzp.orders.create(options, (err, order) => (theOrder = order));
+  await rzp.orders.create(options, (err, order) => {
+    console.log(err);
+    theOrder = order
+  });
   return theOrder.id;
 };
 /***
  * @param {number} coins
  * @return {{key,amount,currency,name,description,order,theme}} checkoutOptions
  */
-const getCheckoutOptions = (coins) => {
-    return {
-        key: process.env.key_id,
-        amount: getCurrentPriceForCoins(coins),
-        currency: process.env.currency,
-        name: 'Nusta Name',
-        description: `Buying ${coins} coins`,
-        order: generateOrderIdForCoins(coins),
+ const getCheckoutOptions = async(coins) => {
+   return {
+     key: process.env.key_id,
+     amount: getCurrentPriceForCoins(coins),
+     currency: process.env.currency,
+     name: 'Nusta Name',
+     description: `Buying ${coins} coins`,
+     handler: () => {
+       // If Payment Is Successful
+       
+       
+       
+       
+     },
+        order: await generateOrderIdForCoins(coins),
         theme: {
-            color:'#000000'
+            color:'#212529'
         }
 }};
 /***
@@ -49,5 +60,7 @@ const getCurrentPriceForCoins = (coins) => {
   return coins;
 };
 const generateRecieptId = () => crs({ length: 10 });
-module.exports = { getCheckoutOptions };
+
+
+module.exports = { getCheckoutOptions:getCheckoutOptions };
 

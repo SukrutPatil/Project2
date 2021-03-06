@@ -5,7 +5,7 @@ const upload = require("express-fileupload");
 const bodyParser = require("body-parser");
 var mysql = require('mysql');
 let alert = require('alert');
-
+const rzpService = require('./razorpay-payment');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -37,7 +37,22 @@ app.get("/createProduct",(req,res)=>{
   res.render("createProduct");
 })
 
-app.post("/viewProduct",(req,res)=>{
+/******************************************
+* API START
+* */
+app.post('/api/addCoins', async(req, res) => {
+  const { coins } = req.body;
+  const checkoutOptions = await rzpService.getCheckoutOptions(coins);
+  res.send(checkoutOptions);
+
+})
+
+
+
+/******************************************
+* API END
+* */
+app.post("/viewProduct", (req, res) => {
   let ema = req.body.email;
   if(usertype=="admin")
   {
@@ -238,7 +253,7 @@ app.post("/checkout_buy",(req,res)=>{
 
 app.post("/buyproduct",(req,res)=>{
   
-  if(parseInt(coins)-parseInt(req.body.coinss)>=0)
+  if(+coins-+req.body.coinss>=0)
   {
     console.log("Coins: "+req.body.coinss);
     console.log("Clicked list: "+req.body.product_id);

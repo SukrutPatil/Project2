@@ -21,6 +21,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -308,10 +310,10 @@
                                         <h4 class="card-title text-white">Coins</h4>
                                     </div>
                                 </div>
-                <form action="/coinAdded" method="post">
+                 
                                 <div class="row">
                                     <div class="col-4 align-self-center">
-                                        <input type="text" name="coinsadd" >
+                                        <input type="text" name="coinsadd" id = "theCoins" >
                                     </div>
                                     <div class="col-8 align-self-center">
                                         <div class="usage chartist-chart" style="height:120px"></div>
@@ -333,9 +335,8 @@
             <hr class="mt-0 mb-5"></button>
 				</button>
 		
-            <input type="submit" class="btn btn-secondary" value="Add Coins">
+            <input onclick = "addCoinsAction()" class="btn btn-secondary" value="Add Coins">
 
-            </form>
 
 
 
@@ -633,6 +634,20 @@
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script>
+ 
+
+<script>
+    const addCoinsAction = async() =>{
+        console.log('Here')
+    let coins = + document.getElementById('theCoins').value;
+    console.log(coins)
+    const reses =  await axios.post('/api/addCoins',{coins});
+        console.log(reses.data);
+    let rzp = new Razorpay(reses.data);
+    rzp.open();
+
+    }
+</script>
 </body>
 
 </html>
