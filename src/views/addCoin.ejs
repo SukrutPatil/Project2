@@ -642,8 +642,12 @@
     let coins = + document.getElementById('theCoins').value;
     console.log(coins)
     const reses =  await axios.post('/api/addCoins',{coins});
-        console.log(reses.data);
-    let rzp = new Razorpay(reses.data);
+    const options = {...reses.data,handler:async(response)=>{
+    await axios.post('/coinAdded',{coinsadd:coins});
+    console.log(response);
+    location.reload();
+    }};
+    let rzp = new Razorpay(options);
     rzp.open();
 
     }

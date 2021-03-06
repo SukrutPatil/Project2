@@ -127,22 +127,22 @@ app.get("", (req, res) => {
   res.render("authentication-login1");
 })
 
-app.post("/addCoin",(req,res)=>{
+app.all("/addCoin",(req,res)=>{
   res.render("addCoin",{photo:photo,email:emailid,coins:coins,firstname:username,lastname:lastname});
 })
 
 app.post("/coinAdded",(req,res)=>{
   con.query(`select * from nusta_user_details where email = '${emailid}'`,function (err, result){
-    coins = result[0].coins;
+    coins = result[0].coins? +result[0].coins:0;
   });
   console.log("Old Coins: "+coins);
   console.log("New Coins: "+req.body.coinsadd);
-  let newcoin = parseInt(req.body.coinsadd)+parseInt(coins);
+  let newcoin = +req.body.coinsadd + +coins;
   con.query(`UPDATE nusta_user_details SET coins = '${newcoin}'  WHERE email = '${emailid}'`, function (err, result, fields) {
-
+    coins = newcoin;
     //res.render("dashboard", { coins: newcoin, mailid: emailid, idimage: result[0].idproof, addfimage: result[0].addressfront, addbimage: result[0].addressback, userimage: result[0].photo, phone: phone, firstname: result[0].firstname, lastname: result[0].lastname, gender: result[0].gender, dob: result[0].dob, houseno: result[0].houseno, address: result[0].address, village: result[0].village, city: result[0].city, state: result[0].state, pincode: result[0].pincode });
 
-
+    
    // res.render("addCoin",{email:emailid,coins:coins,firstname:username,lastname:lastname});
    //res.send("SDf");
    res.render("authentication-login1");

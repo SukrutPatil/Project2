@@ -20,7 +20,7 @@ const generateOrderIdForCoins = async (coins) => {
   };
   let theOrder;
   await rzp.orders.create(options, (err, order) => {
-    console.log(err);
+    console.log(err)
     theOrder = order
   });
   return theOrder.id;
@@ -30,19 +30,12 @@ const generateOrderIdForCoins = async (coins) => {
  * @return {{key,amount,currency,name,description,order,theme}} checkoutOptions
  */
  const getCheckoutOptions = async(coins) => {
-   return {
-     key: process.env.key_id,
-     amount: getCurrentPriceForCoins(coins),
-     currency: process.env.currency,
-     name: 'Nusta Name',
-     description: `Buying ${coins} coins`,
-     handler: () => {
-       // If Payment Is Successful
-       
-       
-       
-       
-     },
+    return {
+        key: process.env.key_id,
+        amount: getCurrentPriceForCoins(coins),
+        currency: process.env.currency,
+        name: 'Nusta Name',
+        description: `Buying ${coins} coins`,
         order: await generateOrderIdForCoins(coins),
         theme: {
             color:'#212529'
