@@ -221,7 +221,7 @@ app.post("/checkLogin", async (req, res) => {
         coins = result[0].coins;
         username = result[0].firstname;
         lastname = result[0].lastname;
-        refEarnings = allReferrals ? allReferrals.length : 0;
+        refEarnings = allReferrals ? allReferrals.length*500 : 0;
         res.render("afterLogin", { allReferrals, coins: coins, userimage: result[0].photo, mailid: emailid, THEREFCODE: currentUserRefCode, THEREFEARNINGS: refEarnings, firstname: result[0].firstname, lastname: result[0].lastname, gender: result[0].gender, dob: result[0].dob, houseno: result[0].houseno, address: result[0].address, village: result[0].village, city: result[0].city, state: result[0].state, pincode: result[0].pincode, joindate: result[0].joindate });
         photo = result[0].photo;
         console.log("Image is: " + result[0].photo);
