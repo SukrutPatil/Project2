@@ -8,9 +8,9 @@ let alert = require('alert');
 const rzpService = require('./razorpay-payment');
 const crs = require('crypto-random-string');
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "195357195",
+  host: "database-1.cjq3t3jitnbb.ap-south-1.rds.amazonaws.com",
+  user: "admin",
+  password: "123456789",
   database: "nustadb",
   port: "3306"
 });
