@@ -1,13 +1,12 @@
 
 const Razorpay = require("razorpay");
 const crs = require("crypto-random-string");
-require("dotenv").config();
 
 
  
 let rzp = new Razorpay({
-  key_id: process.env.key_id,
-  key_secret: process.env.key_secret,
+  key_id: "rzp_test_CuhF7ROD4zn4AY",
+  key_secret: "KKgOXpwiNDYXwmGIoH9J3f7q",
 });
 /***
  * @param {number} coins
@@ -15,7 +14,7 @@ let rzp = new Razorpay({
 const generateOrderIdForCoins = async (coins) => {
   const options = {
     amount: getCurrentPriceForCoins(coins),
-    currency: process.env.currency,
+    currency: 'INR',
     receipt: generateRecieptId(),
   };
   let theOrder;
@@ -31,9 +30,9 @@ const generateOrderIdForCoins = async (coins) => {
  */
  const getCheckoutOptions = async(coins) => {
     return {
-        key: process.env.key_id,
+        key: "rzp_test_CuhF7ROD4zn4AY",
         amount: getCurrentPriceForCoins(coins),
-        currency: process.env.currency,
+        currency: 'INR',
         name: 'Nusta Name',
         description: `Buying ${coins} coins`,
         order: await generateOrderIdForCoins(coins),
@@ -46,11 +45,10 @@ const generateOrderIdForCoins = async (coins) => {
  * @return {number}
  */
 const getCurrentPriceForCoins = (coins) => {
-  if (process.env.currency === "INR") {
+  
     const priceOfOneCoin = 1;
     return coins * priceOfOneCoin * 100;
-  }
-  return coins;
+
 };
 const generateRecieptId = () => crs({ length: 10 });
 
