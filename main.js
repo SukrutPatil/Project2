@@ -257,13 +257,15 @@ app.post('/postCreateContest', async (req, res) => {
 });
 app.get('/startContest/:theContestId', async (req, res) => {
   const { theContestId } = req.params;
-  let 
+  
   await new Promise((resolve, reject) => {
     con.query(`select * from nusta_contest_details where contestid = '${theContestId}'`, (err, result) => {
       if (err) res.send(err);
       if (!result) res.send('NO Contest Found');
       let { contestproductid } = result[0];
       
+
+
       res.render('giftstep', { emailid, coins });
   
   
@@ -307,6 +309,7 @@ app.post("/signupcheck", async (req, res) => {
   emaill = req.body.email;
   pwd = req.body.password;
   rc = req.body.r_code;
+  
 
   await new Promise((resolve, reject) => {
     con.query(`insert into nusta_user_details(email, password,r_code,phone,refercode_use,joindate) values ('${emaill}','${pwd}','${rc}','${phoneno}','${generateReferralCode()}','${getCurrentDate()}')`, function (err, result, fields) {
@@ -322,20 +325,29 @@ app.post("/signupcheck", async (req, res) => {
   if (rc) {
     let c, i;
     //Finding The Owner ofRefcode 
-    await new Promise((resolve, reject) => {
+   let ox =  await new Promise((resolve, reject) => {
 
       con.query(`select user_id,coins from nusta_user_details where refercode_use = '${rc}'`, (err, result) => {
         if (err) console.log(err);
+        console.log(result);
+        if (result && result.length == 0) {
+          console.log(' Resolving Promise With False as There is No Ref');
 
-        c = result[0].coins; i = result[0].user_id;
-        resolve(true);
+
+          resolve(false)
+        } else {
+          console.log("If it is here it means promise is not resolved.")
+          c = result[0].coins; i = result[0].user_id;
+          resolve(true);          
+        }
+
       });
 
     });
 
     console.log(`c ${c} i ${i}`)
     let nc = +c + 500;
-    await new Promise((resolve, reject) => {
+   if (ox) await new Promise((resolve, reject) => {
       con.query(`UPDATE nusta_user_details SET coins = ${nc} WHERE user_id = '${i}'`, (err, result) => {
         if (err) console.log(err);
         console.log('UPDATED');
