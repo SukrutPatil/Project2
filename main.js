@@ -5,6 +5,7 @@ const upload = require("express-fileupload");
 const bodyParser = require("body-parser");
 var mysql = require('mysql');
 let alert = require('alert');
+let uuid = require('uuidv4');
 const rzpService = require('./razorpay-payment');
 const crs = require('crypto-random-string');
 var con = mysql.createConnection({
@@ -58,13 +59,53 @@ app.post('/api/addCoins', async (req, res) => {
 })
 
 
-
-
-
-
 /******************************************
 * API END
 * */
+
+
+/********************************
+ * Contest API START
+ */
+// CreateContest Rendering on GET Request
+app.get('/getCreateContest', (req, res) => { res.render('createContest') });
+
+//CreateContest POST Request
+app.post('/postCreateContest', async (req, res) => {
+  const { contestdate, contesttime, contestproductid, contestproductname } = req.body;
+  const contestimg = req?.files?.contestimg;
+  const theFilePath = './public/images/' + contestimg.name
+  contestimg.mv(theFilePath, (err) => res.send(err));
+  await new Promise((resolve, reject) => {
+    con.query(`insert into nusta_contest_details(contestid,contestproductid,contestimg,contestdate,contesttime) values ('${uuid()}', '${contestproductid}','${contestimg}','${contestdate}','${contesttime}')`, (err, result) => {
+      if (err) res.send({done:false});
+      res.send({ done: true });
+  
+    });
+     
+ })
+});
+
+app.get('/getSeeAllContests',async (req, res) => {
+  // Fetch All Contests
+  //05:20:45 Time Format
+
+
+  await new Promise((resolve, reject) => {
+  con.query(`select * from nusta_contest_details`, (err, result) => {
+    if (err) res.send(err);
+    if (result ?? result.length === 0) res.send("No Contests Yet");
+    let curr = new Date();
+    
+    res.render('seeAllContests', { contests: result });
+    })
+
+  });
+  
+});
+/*********
+ * Contest API END
+ */
 app.post("/viewProduct", (req, res) => {
   let ema = req.body.email;
   if (usertype == "admin") {
@@ -205,7 +246,7 @@ app.post("/checkLogin", async (req, res) => {
   emailid = req.body.username;
   password = req.body.password;
 
-  con.query(`SELECT * FROM nusta_user_details where email = '${emailid}' and password = '${password}'`,async function (err, result, fields) {
+  con.query(`SELECT * FROM nusta_user_details where email = '${emailid}' and password = '${password}'`, async function (err, result, fields) {
 
     try {
       usertype = result[0].user_type;
@@ -221,7 +262,7 @@ app.post("/checkLogin", async (req, res) => {
         coins = result[0].coins;
         username = result[0].firstname;
         lastname = result[0].lastname;
-        refEarnings = allReferrals ? allReferrals.length*500 : 0;
+        refEarnings = allReferrals ? allReferrals.length * 500 : 0;
         res.render("afterLogin", { allReferrals, coins: coins, userimage: result[0].photo, mailid: emailid, THEREFCODE: currentUserRefCode, THEREFEARNINGS: refEarnings, firstname: result[0].firstname, lastname: result[0].lastname, gender: result[0].gender, dob: result[0].dob, houseno: result[0].houseno, address: result[0].address, village: result[0].village, city: result[0].city, state: result[0].state, pincode: result[0].pincode, joindate: result[0].joindate });
         photo = result[0].photo;
         console.log("Image is: " + result[0].photo);
@@ -512,4 +553,4 @@ app.post("/authentication-login1", (req, res) => {
   res.render("authentication-login1");
 })
 
-app.listen(8080, () => console.log(`Server Started at Port 8000`));
+app.listen(8080, () => console.log(`Server Started at Port 8080`));
