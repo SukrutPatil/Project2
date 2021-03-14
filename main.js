@@ -63,49 +63,6 @@ app.post('/api/addCoins', async (req, res) => {
 * API END
 * */
 
-
-/********************************
- * Contest API START
- */
-// CreateContest Rendering on GET Request
-app.get('/getCreateContest', (req, res) => { res.render('createContest') });
-
-//CreateContest POST Request
-app.post('/postCreateContest', async (req, res) => {
-  const { contestdate, contesttime, contestproductid, contestproductname } = req.body;
-  const contestimg = req?.files?.contestimg;
-  const theFilePath = './public/images/' + contestimg.name
-  contestimg.mv(theFilePath, (err) => res.send(err));
-  await new Promise((resolve, reject) => {
-    con.query(`insert into nusta_contest_details(contestid,contestproductid,contestimg,contestdate,contesttime) values ('${uuid()}', '${contestproductid}','${contestimg}','${contestdate}','${contesttime}')`, (err, result) => {
-      if (err) res.send({done:false});
-      res.send({ done: true });
-  
-    });
-     
- })
-});
-
-app.get('/getSeeAllContests',async (req, res) => {
-  // Fetch All Contests
-  //05:20:45 Time Format
-
-
-  await new Promise((resolve, reject) => {
-  con.query(`select * from nusta_contest_details`, (err, result) => {
-    if (err) res.send(err);
-    if (result ?? result.length === 0) res.send("No Contests Yet");
-    let curr = new Date();
-    
-    res.render('seeAllContests', { contests: result });
-    })
-
-  });
-  
-});
-/*********
- * Contest API END
- */
 app.post("/viewProduct", (req, res) => {
   let ema = req.body.email;
   if (usertype == "admin") {
@@ -275,6 +232,65 @@ app.post("/checkLogin", async (req, res) => {
 
   });
 })
+
+
+/********************************
+ * Contest API START
+ */
+// CreateContest Rendering on GET Request
+app.get('/getCreateContest', (req, res) => { res.render('createContest') });
+
+//CreateContest POST Request
+app.post('/postCreateContest', async (req, res) => {
+  const { contestdate, contesttime, contestproductid, contestproductname } = req.body;
+  const contestimg = req?.files?.contestimg;
+  const theFilePath = './public/images/' + contestimg.name
+  contestimg.mv(theFilePath, (err) => res.send(err));
+  await new Promise((resolve, reject) => {
+    con.query(`insert into nusta_contest_details(contestid,contestproductid,contestimg,contestdate,contesttime) values ('${uuid()}', '${contestproductid}','${contestimg}','${contestdate}','${contesttime}')`, (err, result) => {
+      if (err) res.send({ done: false });
+      res.send({ done: true });
+  
+    });
+     
+  });
+});
+app.get('/startContest/:theContestId', async (req, res) => {
+  const { theContestId } = req.params;
+  let 
+  await new Promise((resolve, reject) => {
+    con.query(`select * from nusta_contest_details where contestid = '${theContestId}'`, (err, result) => {
+      if (err) res.send(err);
+      if (!result) res.send('NO Contest Found');
+      let { contestproductid } = result[0];
+      
+      res.render('giftstep', { emailid, coins });
+  
+  
+    });
+  
+  });
+});
+app.get('/getSeeAllContests',async (req, res) => {
+  // Fetch All Contests
+  //05:20:45 Time Format
+
+
+  await new Promise((resolve, reject) => {
+  con.query(`select * from nusta_contest_details`, (err, result) => {
+    if (err) res.send(err);
+    if (result ?? result.length === 0) res.send("No Contests Yet");
+    let curr = new Date();
+
+    res.render('seeAllContests', { contests: result });
+    })
+
+  });
+  
+});
+/*********
+ * Contest API END
+ */
 app.get('/referandearn', (req, res) => {
   console.log(allReferrals);
   res.render('referandearn', {
