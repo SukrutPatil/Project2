@@ -301,7 +301,7 @@ app.post("/postCreateContest", async (req, res) => {
   });
   await new Promise((resolve, reject) => {
     con.query(
-      `insert into nusta_contest_details(contestid,contestproductid,contestimg,contestdate,contesttime) values ('${uuid()}', '${contestproductid}','${contestimg}','${contestdate}','${contesttime}')`,
+      `insert into nusta_contest_details(contestid,contestproductid,contestimg,contestdate,contesttime) values ('${uuid()}', '${contestproductid}','${theFilePath}','${contestdate}','${contesttime}')`,
       (err, result) => {
         if (err) res.send({ done: false });
         else res.send({ done: true });
@@ -332,10 +332,10 @@ app.get("/getSeeAllContests", async (req, res) => {
   await new Promise((resolve, reject) => {
     con.query(`select * from nusta_contest_details`, (err, result) => {
       if (err) res.send(err);
-      if (result ?? result.length === 0) res.send("No Contests Yet");
-      let curr = new Date();
+      if (result && result.length !== 0)
+        res.render("seeAllContests", { contests: result });
+      else res.send("No Contests Yet");
 
-      res.render("seeAllContests", { contests: result });
     });
   });
 });
@@ -454,7 +454,7 @@ app.post("/buyproduct", (req, res) => {
     console.log("Final Coins: " + coins);
     con.query(
       `UPDATE nusta_user_details SET checkout_list = '${cc}' , coins = '${coins}'  WHERE email = '${emailid}'`,
-      function (err, result, fields) {}
+      function (err, result, fields) { }
     );
 
     con.query(`SELECT * FROM nusta_product_details`, function (err, result) {
