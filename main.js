@@ -277,8 +277,15 @@ app.post("/checkLogin", async (req, res) => {
  * Contest API START
  */
 // CreateContest Rendering on GET Request
-app.get("/getCreateContest", (req, res) => {
-  res.render("createContest");
+app.get("/getCreateContest/:product_id",async (req, res) => {
+  const { product_id } = req.params;
+  await new Promise((resolve, reject) => {
+    con.query(`select * from nusta_product_details where id = '${product_id}'`, (err, result) => {
+      if (err) res.send(err);
+      console.log(result);
+      if (result && result.length !== 0) res.render('createContest', { product_id, product_name: result[0].product_name });
+    });
+  });
 });
 
 //CreateContest POST Request
@@ -309,6 +316,15 @@ app.post("/postCreateContest", async (req, res) => {
     );
   });
 });
+app.get('/getAllProductsByAdmin', async (req, res) => {
+  await new Promise((resolve, reject) => {
+    con.query(`select * from nusta_product_details where admin_email = '${emailid}'`, (err, result) => {
+      if (err) res.send(err);
+      if (result && result.length !== 0) res.render('see-all-products', { result });
+    });
+  });
+
+});
 app.get("/startContest/:theContestId", async (req, res) => {
   const { theContestId } = req.params;
 
@@ -317,7 +333,7 @@ app.get("/startContest/:theContestId", async (req, res) => {
       `select * from nusta_contest_details where contestid = '${theContestId}'`,
       (err, result) => {
         if (err) res.send(err);
-        if (!result) res.send("NO Contest Found");
+        if (!result) res.send("No Contest Found");
         let { contestproductid } = result[0];
 
         res.render("giftstep", { emailid, coins });

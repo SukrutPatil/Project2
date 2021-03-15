@@ -230,61 +230,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Lael Greer</td>
-                                <td>Systems Administrator</td>
-                                <td>London</td>
-                                <td>21</td>
-                                <td>
-                                    <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a class="btn btn-primary" href="">Create Contest</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jonas Alexander</td>
-                                <td>Developer</td>
-                                <td>San Francisco</td>
-                                <td>30</td>
-                                <td>
-                                    <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a class="btn btn-primary" href="">Create Contest</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Shad Decker</td>
-                                <td>Regional Director</td>
-                                <td>Edinburgh</td>
-                                <td>51</td>
-                                <td>
-                                    <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a class="btn btn-primary" href="">Create Contest</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Michael Bruce</td>
-                                <td>Javascript Developer</td>
-                                <td>Singapore</td>
-                                <td>29</td>
-                                <td>
-                                    <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a class="btn btn-primary" href="">Create Contest</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Donna Snider</td>
-                                <td>Customer Support</td>
-                                <td>New York</td>
-                                <td>27</td>
-                                <td>
-                                    <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a class="btn btn-primary" href="">Create Contest</a>
-                                </td>
-                            </tr>
+                            <% for (const rowItem of result) { %>
+                                <tr>
+                                    <td><%= rowItem.id %></td>
+                                    <td><%= rowItem.product_name %></td>
+                                    <td><%= rowItem.description %></td>
+                                    <td><%= rowItem.price %></td>
+                                    <td>
+                                        <a class="btn btn-info" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a class="btn btn-primary" href="/getCreateContest/<%= rowItem.id %>">Create Contest</a>
+                                    </td>
+                                </tr> 
+                    
+                            <% } %>
+                           
+                    
                         </tbody>
                     </table>
                     <!-- Column -->
@@ -560,17 +521,17 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="src/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="../assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="src/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="src`/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- apps -->
     <script src="../../dist/js/app.min.js"></script>
     <script src="../../dist/js/app.init.js"></script>
     <script src="../../dist/js/app-style-switcher.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="src/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="src/assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
     <script src="../../dist/js/waves.js"></script>
     <!--Menu sidebar -->
@@ -578,8 +539,8 @@
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script>
     <!-- This Page JS -->
-    <script src="../assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script src="../assets/libs/magnific-popup/meg.init.js"></script>
+    <script src="src/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script src="src/assets/libs/magnific-popup/meg.init.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script>

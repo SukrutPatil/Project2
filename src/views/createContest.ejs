@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="src/assets/images/favicon.png">
     <title>Material pro admin Template - The Ultimate Multipurpose admin template</title>
 	<link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/" />
     <!-- This Page CSS -->
@@ -55,17 +55,17 @@
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="src/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="src/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <img src="src/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo text -->
-                            <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                            <img src="src/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -150,9 +150,9 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- User profile -->
-                <div class="user-profile position-relative" style="background: url(../assets/images/background/user-info.jpg) no-repeat;">
+                <div class="user-profile position-relative" style="background: url(src/assets/images/background/user-info.jpg) no-repeat;">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="../assets/images/users/profile.png" alt="user" class="w-100" /> </div>
+                    <div class="profile-img"> <img src="src/assets/images/users/profile.png" alt="user" class="w-100" /> </div>
                     <!-- User profile text-->
                     <div class="profile-text pt-1"> 
                         <a href="#" class="dropdown-toggle u-dropdown w-100 text-white d-block position-relative" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Markarn Doe</a>
@@ -229,13 +229,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">ID</label>
-                                                    <input type="text" id="id" class="form-control" value="RandomId" name = "contestproductid"disabled> </div>
+                                                    <input type="text" id="id" class="form-control" value="<%= product_id %>" name = "contestproductid"disabled> </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Name</label>
-                                                    <input type="text" id="name" class="form-control" value="RandomName" name = "contestproductname" disabled> </div>
+                                                    <input type="text" id="name" class="form-control" value="<%= product_name %>" name = "contestproductname" disabled> </div>
                                             </div>
                                             <!--/span-->
                                         </div>
@@ -247,10 +247,10 @@
                                                 <h5 class="card-title mt-3">Upload Code</h5>
                                                 <div class="el-element-overlay">
                                                     <div class="el-card-item pb-3">
-                                                        <div class="el-card-avatar mb-3 el-overlay-1 w-100 overflow-hidden position-relative text-center"> <img src="../assets/images/gallery/chair3.jpg" class="d-block position-relative w-100" alt="user" />
+                                                        <div class="el-card-avatar mb-3 el-overlay-1 w-100 overflow-hidden position-relative text-center"> <img src="src/assets/images/gallery/chair3.jpg" class="d-block position-relative w-100" alt="user" />
                                                             <div class="el-overlay w-100 overflow-hidden">
                                                                 <ul class="list-style-none el-info text-white text-uppercase d-inline-block p-0">
-                                                                    <li class="el-item d-inline-block my-0  mx-1"><a class="btn default btn-outline image-popup-vertical-fit el-link text-white border-white" href="../assets/images/gallery/chair3.jpg"><i class="icon-magnifier"></i></a></li>
+                                                                    <li class="el-item d-inline-block my-0  mx-1"><a class="btn default btn-outline image-popup-vertical-fit el-link text-white border-white" href="src/assets/images/gallery/chair3.jpg"><i class="icon-magnifier"></i></a></li>
                                                                     <li class="el-item d-inline-block my-0  mx-1"><a class="btn default btn-outline el-link text-white border-white" href="javascript:void(0);"><i class="icon-link"></i></a></li>
                                                                 </ul>
                                                             </div>
@@ -428,53 +428,53 @@
                         <li>
                             <div class="message-center chat-scroll position-relative">
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_1' data-user-id='1'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/1.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle online"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/1.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle online"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Pavan kumar</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_2' data-user-id='2'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/2.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle busy"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/2.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle busy"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Sonu Nigam</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">I've sung a song! See you at</span> <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_3' data-user-id='3'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/3.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle away"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/3.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle away"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Arijit Sinh</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">I am a singer!</span> <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_4' data-user-id='4'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/4.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/4.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Nirav Joshi</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_5' data-user-id='5'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/5.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/5.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Sunil Joshi</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_6' data-user-id='6'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/6.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/6.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Akshay Kumar</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_7' data-user-id='7'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/7.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/7.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Pavan kumar</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span> </div>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2" id='chat_user_8' data-user-id='8'>
-                                    <span  class="user-img position-relative d-inline-block"> <img src="../assets/images/users/8.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
+                                    <span  class="user-img position-relative d-inline-block"> <img src="src/assets/images/users/8.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle offline"></span> </span>
                                     <div class="w-75 d-inline-block v-middle pl-2">
                                         <h5 class="message-title mb-0 mt-1">Varun Dhavan</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span> </div>
                                 </a>
@@ -504,7 +504,7 @@
                         </div>
                         <div class="sl-item">
                             <div class="sl-left"> <img class="rounded-circle" alt="user"
-                                    src="../assets/images/users/2.jpg"> </div>
+                                    src="src/assets/images/users/2.jpg"> </div>
                             <div class="sl-right">
                                 <div class="font-medium">Go to the Doctor <span class="sl-date">5 minutes ago</span>
                                 </div>
@@ -513,7 +513,7 @@
                         </div>
                         <div class="sl-item">
                             <div class="sl-left"> <img class="rounded-circle" alt="user"
-                                    src="../assets/images/users/1.jpg"> </div>
+                                    src="src/assets/images/users/1.jpg"> </div>
                             <div class="sl-right">
                                 <div><a href="javascript:void(0)">Stephen</a> <span class="sl-date">5 minutes ago</span>
                                 </div>
@@ -536,7 +536,7 @@
                         </div>
                         <div class="sl-item">
                             <div class="sl-left"> <img class="rounded-circle" alt="user"
-                                    src="../assets/images/users/4.jpg"> </div>
+                                    src="src/assets/images/users/4.jpg"> </div>
                             <div class="sl-right">
                                 <div class="font-medium">Go to the Doctor <span class="sl-date">5 minutes ago</span>
                                 </div>
@@ -545,7 +545,7 @@
                         </div>
                         <div class="sl-item">
                             <div class="sl-left"> <img class="rounded-circle" alt="user"
-                                    src="../assets/images/users/6.jpg"> </div>
+                                    src="src/assets/images/users/6.jpg"> </div>
                             <div class="sl-right">
                                 <div><a href="javascript:void(0)">Stephen</a> <span class="sl-date">5 minutes ago</span>
                                 </div>
@@ -562,17 +562,17 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="src/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="src/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="src/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- apps -->
     <script src="../../dist/js/app.min.js"></script>
     <script src="../../dist/js/app.init.js"></script>
     <script src="../../dist/js/app-style-switcher.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="src/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="src/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
     <script src="../../dist/js/waves.js"></script>
     <!--Menu sidebar -->
@@ -580,8 +580,8 @@
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script>
     <!-- This Page JS -->
-    <script src="src/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script src="src/assets/libs/magnific-popup/meg.init.js"></script>
+    <script src="../assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/libs/magnific-popup/meg.init.js"></script>
 </body>
 
 </html>
